@@ -71,42 +71,74 @@ public class Main {
         }
     }
 
-    private static void gameLoop() {
+    private static void GameLoop() {
+
+        playerTurn();
+        computerTurn();
+        printOceanMap();
+
+        System.out.println();
+        System.out.println("Your ships: " + playerShips + " | Computer ships: " + computerShips);
+        System.out.println();
+    }
+
+
+
+    private static void playerTurn() {
+
 
         System.out.println("\nTime to go to Battle Captain!!!");
+        int x = 0;
+        int y = 0;
+            do {
+                Scanner input = new Scanner(System.in);
+                System.out.print("Set row coordinat for strik");
+                x = input.nextInt();
 
-
-            int x = 0;
-            int y = 0;
-
-                do {
-                 Scanner input = new Scanner(System.in);
-                 System.out.print("Set row coordinat for strik");
-                 x = input.nextInt();
-
-                 System.out.print("Set col coordinat for strik");
-                 y = input.nextInt();
-
-               // Check so coordinats is valid
-               if ((x < 0 && x <= numRows) && (y < 0 && y <= numCols)) {
+                System.out.print("Set col coordinat for strik");
+                y = input.nextInt();
+                // Check so coordinats is valid
+                if ((x < 0 && x <= numRows) && (y < 0 && y <= numCols)) {
                 //Check for computer ship
-                   if (gameBoard[x][y] = "cs") {
+                   if (gameBoard[x][y] == "cs") {
                        System.out.println(" Good shoot Captain, thats a HIT!!!");
                        gameBoard[x][y] = "xx";
                        computerShips--;
                    }
+                   else if (gameBoard[x][y] =="ps") {
+                       System.out.println("Captain, Are you drunk? We sank our own ship!!!");
+                       gameBoard[x][y] = "oo";
+                       playerShips--;
+                   }
+                   else if (gameBoard[x][y] == "--"){
+                       System.out.println("Oh no!! Thats a miss, Better luck next time Captain.");
+                       gameBoard[x][y] = "ms";
+                   }
                }
-           }
-           }
+               else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
+                   System.out.println("Please Captain, try to focus. We cant shot outside the water.  ");
+                }
+                while ((x < 0 || x >= numRows)||(y < 0 || y >= numCols));
+                }
+
+    private static void computerTurn() {
+        System.out.println(" Now its computer's turn to shot, Watch out so they don't hit one of your ship.");
     }
+
+
 
         public static void main(String[] args) {
 
         createGameBoard();
         placePlayersShips();
         simulateComputerShipsAndPlace();
-        gameLoop();
 
+            do {
+                GameLoop();
+            }
+            while(playerShips != 0 && computerShips != 0);
+
+            gameOver();
     }
 }
 
