@@ -71,11 +71,42 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    private static void gameLoop() {
+
+        System.out.println("\nTime to go to Battle Captain!!!");
+
+
+            int x = 0;
+            int y = 0;
+
+                do {
+                 Scanner input = new Scanner(System.in);
+                 System.out.print("Set row coordinat for strik");
+                 x = input.nextInt();
+
+                 System.out.print("Set col coordinat for strik");
+                 y = input.nextInt();
+
+               // Check so coordinats is valid
+               if ((x < 0 && x <= numRows) && (y < 0 && y <= numCols)) {
+                //Check for computer ship
+                   if (gameBoard[x][y] = "cs") {
+                       System.out.println(" Good shoot Captain, thats a HIT!!!");
+                       gameBoard[x][y] = "xx";
+                       computerShips--;
+                   }
+               }
+           }
+           }
+    }
+
+        public static void main(String[] args) {
 
         createGameBoard();
         placePlayersShips();
         simulateComputerShipsAndPlace();
+        gameLoop();
+
     }
-   }
+}
 
