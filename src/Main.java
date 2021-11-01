@@ -1,14 +1,11 @@
 public class Main {
 
     public static void main(String[] args) {
-        Battle.createGameBoard();
-        Battle.placePlayersShips();
-        Battle.placeComputerShips();
+        Battle.inItGame();
 
-
-            do {
-                Battle.GameLoop();
-            } while(Battle.playerShips != 0 && Battle.computerShips != 0);
+        do {
+            Battle.GameLoop();
+            } while(Player.playerShips != 0 && Computer.computerShips != 0);
             Battle.gameOver();
     }
 }
