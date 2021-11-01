@@ -1,9 +1,10 @@
 public class Main {
 
     public static void main(String[] args) {
+        Battle.createGameBoard();
         Battle.placePlayersShips();
         Battle.placeComputerShips();
-        Battle.createGameBoard();
+
 
             do {
                 Battle.GameLoop();

@@ -44,10 +44,10 @@ public class Battle {
             System.out.print("Enter Y coordinate for your " + i + " of "+ playerShips +" ships: ");
             int y = input.nextInt();
 
-            if ((x >= 0 && x < numRows) && (y >= 0 && y < numCols) && (gameBoard[x][y].equals("  "))) {
+            if ((x >= 0 && x < numRows) && (y >= 0 && y < numCols) && (gameBoard[x][y] == ("  "))) {
                 gameBoard[x][y] = "p1";
 
-            } else if ((x >= 0 && x < numRows) && (y >= 0  && y > numCols && gameBoard[x][y].equals("p1"))){
+            } else if ((x >= 0 && x < numRows) && (y >= 0  && y > numCols && gameBoard[x][y] == ("p1"))){
                 System.out.println("You alredy have a ships on this coordinats");
             }
             else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
@@ -63,7 +63,7 @@ public class Battle {
             int x = (int)(Math.random() * 9);
             int y = (int)(Math.random() * 9);
 
-            if ((x > 0 && x <= numRows) && (y > 0 && y <= numCols) && (gameBoard[x][y].equals("  "))) {
+            if ((x > 0 && x <= numRows) && (y > 0 && y <= numCols) && (gameBoard[x][y] ==("  "))) {
                 gameBoard[x][y] = "c1";
                 System.out.println("Computer has placed " + i + " of " + computerShips +" ships");
                 i++;
@@ -82,14 +82,12 @@ public class Battle {
         System.out.println();
     }
 
-
-
     private static void playerTurn() {
 
 
         System.out.println("\n Captain it's your time to shot!!!");
-        int x = 0;
-        int y = 0;
+        int x ;
+        int y ;
         do {
             Scanner input = new Scanner(System.in);
             System.out.print("Set X coordinat for strik");
@@ -105,6 +103,7 @@ public class Battle {
                     gameBoard[x][y] = "xx";
                     computerShips--;
                 }
+                //Check for own ships
                 else if (gameBoard[x][y] =="p1") {
                     System.out.println("Captain, Are you drunk? We sank our own ship!!!");
                     gameBoard[x][y] = "oo";
@@ -119,7 +118,7 @@ public class Battle {
                 }
             }
             else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
-                System.out.println("\nPlease Captain, try to focus. We cant shot outside the water.");
+                System.out.println("\nPlease Captain, try to focus. We cant shot outside the gamboard.");
         }
         while ((x < 0 || x >= numRows)||(y < 0 || y >= numCols));
     }
