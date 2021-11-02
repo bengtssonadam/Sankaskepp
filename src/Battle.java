@@ -1,16 +1,23 @@
 public class Battle {
 
-    protected static void inItGame() {
-        Player player
-        GameBoard.createGameBoard();
-        Player.placePlayerShips();
-        Computer.placeComputerShips();
-    }
-    protected static void GameLoop() {
+    Player player1 = new Player();
+    Computer player2 = new Computer();
+    protected void inItGame() {
 
-        Player.playerTurn();
-        Computer.computerTurn();
-        GameBoard.printGameBoard();
+        player1.createGameBoard();
+        player1.placePlayerShips();
+        player2.createGameBoard();
+        player2.placeComputerShips();
+
+    }
+    protected void GameLoop() {
+
+        player1.printGameBoard(player2.getGameBoard());
+        player1.playerTurn();
+        player1.printGameBoard(player2.getGameBoard());
+        player2.printGameBoard(player1.getGameBoard());
+        player2.computerTurn();
+        player2.printGameBoard(player1.getGameBoard());
 
         System.out.println();
         System.out.println("Your ships: " + Player.playerShips + " | Computer ships: " + Computer.computerShips);

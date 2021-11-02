@@ -1,5 +1,5 @@
 public class Computer extends Player{
-    public Computer(String inName) {
+    public Computer() {
 
     }
     public static int computerShips = Player.playerShips;

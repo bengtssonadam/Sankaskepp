@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class Player extends GameBoard {
+public class Player extends GameBoard  {
 
     protected static int playerShips = 3;
     public Player(){
-        super();
+
 
     }
     public void placePlayerShips(){

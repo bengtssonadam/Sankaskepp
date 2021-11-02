@@ -1,10 +1,11 @@
 public class Main {
 
     public static void main(String[] args) {
-        Battle.inItGame();
+        Battle battle = new Battle();
+        battle.inItGame();
 
         do {
-            Battle.GameLoop();
+            battle.GameLoop();
             } while(Player.playerShips != 0 && Computer.computerShips != 0);
             Battle.gameOver();
     }
