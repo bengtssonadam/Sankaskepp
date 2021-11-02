@@ -28,7 +28,7 @@ public class GameBoard {
             System.out.print(i + " ");
         System.out.println();
     }
-    public static void printGameBoard(GameBoard board) {
+    public void printGameBoard(GameBoard board) {
         for(var row : board.gameBoard) {
             for(var cell : row) {
                 if(cell == Cell.EMPTY || cell == Cell.SHIP) {

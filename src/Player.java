@@ -1,31 +1,38 @@
 import java.util.Scanner;
 
 public class Player extends GameBoard {
-    public static int playerShips = 3;
-    public static void placePlayerShips(){
 
-    System.out.println("\nWelcomem Captain : Place your ships:");
-    Scanner input = new Scanner(System.in);
+    protected static int playerShips = 3;
+    public Player(){
+        super();
+
+    }
+    public void placePlayerShips(){
+
+        System.out.println("\nWelcomem Captain  : Place your ships:");
+        Scanner input = new Scanner(System.in);
+
 
         //Place 3 ships for player
         for (int i = 1; i <= playerShips;i++) {
-        System.out.print("Enter X coordinate for your " + i + " of "+ playerShips +" ships: ");
-        int x = input.nextInt();
-        System.out.print("Enter Y coordinate for your " + i + " of "+ playerShips +" ships: ");
-        int y = input.nextInt();
+            System.out.print("Enter X coordinate for your " + i + " of "+ playerShips +" ships: ");
+            int x = input.nextInt();
+            System.out.print("Enter Y coordinate for your " + i + " of "+ playerShips +" ships: ");
+            int y = input.nextInt();
 
-        if ((x >= 0 && x < numRows) && (y >= 0 && y < numCols) && (gameBoard[x][y] == ("  "))) {
-            gameBoard[x][y] = "p1";
-
-        } else if ((x >= 0 && x < numRows) && (y >= 0  && y > numCols && gameBoard[x][y] == ("p1"))){
-            System.out.println("You alredy have a ships on this coordinats");
+            if ((x >= 0 && x < numRows) && (y >= 0 && y < numCols) && (gameBoard[x][y] == Cell.EMPTY)) {
+                gameBoard[x][y] = Cell.SHIP;
+            }
+            else if ((x >= 0 && x < numRows) && (y >= 0  && y > numCols && gameBoard[x][y] == Cell.SHIP)) {
+                System.out.println("You alredy have a ships on this coordinats");
+            }
+            else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
+                System.out.println("You can't place your ship outside the " + numRows + " by " + numCols + " gameboard");
         }
-        else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
-            System.out.println("You can't place your ship outside the " + numRows + " by " + numCols + " gameboard");
-    }
         System.out.println("\nSmart choices Captin, Soon time for battle.");
-}
-    protected static void playerTurn() {
+    }
+
+    protected void playerTurn() {
 
 
         System.out.println("\nCaptain it's your time to shot!!!");
@@ -41,23 +48,24 @@ public class Player extends GameBoard {
             // Check so coordinats is valid
             if ((x >= 0 && x <= numRows) && (y >= 0 && y <= numCols)) {
                 //Check for computer ship
-                if (gameBoard[x][y]==("c1")) {
+                if (gameBoard[x][y]==(Cell.SHIP)) {
                     System.out.println(" Good shoot Captain, that's a HIT!!!");
-                    gameBoard[x][y] = "xx";
+                    gameBoard[x][y] = Cell.HIT_SHIP;
                     Computer.computerShips--;
                 }
                 //Check for own ships
-                else if (gameBoard[x][y] =="p1") {
-                    System.out.println("Captain, Are you drunk? We sank our own ship!!!");
-                    gameBoard[x][y] = "oo";
-                    playerShips--;
-                }
-                else if (gameBoard[x][y] == "  "){
+//                else if (gameBoard[x][y] =="p1") {
+//                    System.out.println("Captain, Are you drunk? We sank our own ship!!!");
+//                    gameBoard[x][y] = Cell.HIT_SHIP;
+//                    playerShips--;
+//              }
+                else if (gameBoard[x][y].equals(Cell.EMPTY)){
                     System.out.println("\nOh no!! That's a miss, Better luck next time Captain.");
-                    gameBoard[x][y] = "--";
+                    gameBoard[x][y] = Cell.MISS;
                 }
-                else if (gameBoard[x][y] == "oo"){
+                else if (gameBoard[x][y].equals(Cell.HIT_SHIP)) {
                     System.out.println("\n<That ship is alredy hit");
+                    gameBoard[x][y] = Cell.HIT_SHIP;
                 }
             }
             else if ((x > 0 || x<= numRows) || (y >= 0 || y < numCols))
@@ -65,9 +73,4 @@ public class Player extends GameBoard {
         }
         while ((x < 0 || x >= numRows)||(y < 0 || y >= numCols));
     }
-
-
-
-
-
 }

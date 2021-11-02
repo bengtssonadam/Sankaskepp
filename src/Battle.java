@@ -1,6 +1,7 @@
 public class Battle {
 
     protected static void inItGame() {
+        Player player
         GameBoard.createGameBoard();
         Player.placePlayerShips();
         Computer.placeComputerShips();
