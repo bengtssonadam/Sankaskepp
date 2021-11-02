@@ -7,7 +7,7 @@ public class Player extends GameBoard {
     System.out.println("\nWelcomem Captain : Place your ships:");
     Scanner input = new Scanner(System.in);
 
-    //Place 3 ships for player
+        //Place 3 ships for player
         for (int i = 1; i <= playerShips;i++) {
         System.out.print("Enter X coordinate for your " + i + " of "+ playerShips +" ships: ");
         int x = input.nextInt();
@@ -65,6 +65,8 @@ public class Player extends GameBoard {
         }
         while ((x < 0 || x >= numRows)||(y < 0 || y >= numCols));
     }
+
+
 
 
 
