@@ -1,5 +1,9 @@
 public class Computer extends Player{
-    public Computer() {
+
+
+    public Computer(String name) {
+        super(name);
+
 
     }
     public static int computerShips = Player.playerShips;
@@ -19,8 +23,8 @@ public class Computer extends Player{
     }
     protected void computerTurn() {
         System.out.println(" \nNow its computer's turn to shot, Watch out so they don't hit one of your ship.");
-        int x = 0;
-        int y = 0;
+        int x ;
+        int y ;
 
         //random pick x & y coordinats for computers shots.
         do {
@@ -34,11 +38,7 @@ public class Computer extends Player{
                     gameBoard[x][y] = Cell.HIT_SHIP;
                     Player.playerShips--;
                 }
-                else if (gameBoard[x][y] == Cell.SHIP) {
-                    System.out.println("Captain don't worry!!! The Computer is sinking there own ship.");
-                    gameBoard[x][y] = Cell.HIT_SHIP;
-                    Computer.computerShips--;
-                }
+
                 else if (gameBoard[x][y] == Cell.EMPTY) {
                     System.out.println("Captain don't worry!!! The Computer is hitting the water!!");
                 }

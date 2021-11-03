@@ -2,15 +2,20 @@ import java.util.Scanner;
 
 public class Player extends GameBoard  {
 
-    protected static int playerShips = 3;
-    public Player(){
+    public static int playerShips = 3;
+    private String name;
 
-
+    public Player(String name) {
+        this.name = name;
     }
+
+
     public void placePlayerShips(){
 
-        System.out.println("\nWelcomem Captain  : Place your ships:");
+        System.out.println("\nWelcomem " + name + ": Place your ships:");
         Scanner input = new Scanner(System.in);
+
+
 
 
         //Place 3 ships for player
@@ -29,13 +34,13 @@ public class Player extends GameBoard  {
             else if ((x <= 0 || x > numRows) || (y <= 0 || y > numCols))
                 System.out.println("You can't place your ship outside the " + numRows + " by " + numCols + " gameboard");
         }
-        System.out.println("\nSmart choices Captin, Soon time for battle.");
+        System.out.println("\nSmart choices " + name +", Soon time for battle.");
     }
 
     protected void playerTurn() {
 
 
-        System.out.println("\nCaptain it's your time to shot!!!");
+        System.out.println("\n"+ name +" it's your time to shot!!!");
         int x ;
         int y ;
         do {
@@ -49,27 +54,21 @@ public class Player extends GameBoard  {
             if ((x >= 0 && x <= numRows) && (y >= 0 && y <= numCols)) {
                 //Check for computer ship
                 if (gameBoard[x][y]==(Cell.SHIP)) {
-                    System.out.println(" Good shoot Captain, that's a HIT!!!");
+                    System.out.println(" Good shoot " + name + ", that's a HIT!!!");
                     gameBoard[x][y] = Cell.HIT_SHIP;
-                    Computer.computerShips--;
-                }
-                //Check for own ships
-//                else if (gameBoard[x][y] =="p1") {
-//                    System.out.println("Captain, Are you drunk? We sank our own ship!!!");
-//                    gameBoard[x][y] = Cell.HIT_SHIP;
-//                    playerShips--;
-//              }
+                    Computer.computerShips--;}
+
                 else if (gameBoard[x][y].equals(Cell.EMPTY)){
-                    System.out.println("\nOh no!! That's a miss, Better luck next time Captain.");
+                    System.out.println("\nOh no!! That's a miss" + name + ", Better luck next time Captain.");
                     gameBoard[x][y] = Cell.MISS;
                 }
                 else if (gameBoard[x][y].equals(Cell.HIT_SHIP)) {
-                    System.out.println("\n<That ship is alredy hit");
+                    System.out.println("\n<That ship is alredy hit" + name + " .");
                     gameBoard[x][y] = Cell.HIT_SHIP;
                 }
             }
             else if ((x > 0 || x<= numRows) || (y >= 0 || y < numCols))
-                System.out.println("\nPlease Captain, try to focus. We cant shot outside the gamboard.");
+                System.out.println("\nPlease " + name + ", try to focus. We cant shot outside the gamboard.");
         }
         while ((x < 0 || x >= numRows)||(y < 0 || y >= numCols));
     }
