@@ -7,7 +7,7 @@ public class Main {
         do {
             battle.GameLoop();
             } while(Player.playerShips != 0 && Computer.computerShips != 0);
-            Battle.gameOver();
+            battle.gameOver();
     }
 }
 

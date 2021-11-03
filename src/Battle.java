@@ -5,20 +5,22 @@ public class Battle {
 
     protected void inItGame() {
         player1.createGameBoard(player1);
+        player2.createGameBoard(player2);
         player1.getGameBoard();
-        player1.placePlayerShips();
+        player2.getGameBoard();
         player1.printGameBoard(player1);
 
-
-        player2.getGameBoard();
+        player1.placePlayerShips(player2);
+        player1.printGameBoard(player2);
         player2.placeComputerShips();
         player2.printGameBoard(player1);
+
+
 
 
     }
     protected void GameLoop() {
 
-        System.out.println(player1.gameBoard);
         player1.playerTurn();
         player1.printGameBoard(player2);
         player2.computerTurn();

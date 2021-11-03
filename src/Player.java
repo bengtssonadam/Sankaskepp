@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class Player extends GameBoard  {
 
     public static int playerShips = 3;
-    private String name;
+    private final String name;
 
     public Player(String name) {
         this.name = name;
     }
 
 
-    public void placePlayerShips(){
+    public void placePlayerShips(GameBoard board){
 
         System.out.println("\nWelcomem " + name + ": Place your ships:");
         Scanner input = new Scanner(System.in);
@@ -63,7 +63,7 @@ public class Player extends GameBoard  {
                     gameBoard[x][y] = Cell.MISS;
                 }
                 else if (gameBoard[x][y].equals(Cell.HIT_SHIP)) {
-                    System.out.println("\n<That ship is alredy hit" + name + " .");
+                    System.out.println("\n That ship is alredy hit " + name + " .");
                     gameBoard[x][y] = Cell.HIT_SHIP;
                 }
             }
