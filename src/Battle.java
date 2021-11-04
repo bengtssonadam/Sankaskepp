@@ -16,13 +16,14 @@ public class Battle {
     }
 
     public void GameLoop() {
-        while(running) {
+        while(player1.playerShipNumber != 0 && player2.playerShipNumber!= 0) {
             player2.getBoard().printGameBoard(true);
             playerTurn(player1, player2);
             player1.getBoard().printGameBoard(true);
             playerTurn(player2, player1);
         }
     }
+
 
     protected void placeShip(Player player){
         player.getBoard().printGameBoard(false);
@@ -42,9 +43,10 @@ public class Battle {
 
 
         System.out.println("\n"+ player.name +" it's your time to shot!!!");
+        System.out.println(player.name + " you have: " + player.playerShipNumber + " ship left  and " + opponent.name + " have :" + opponent.playerShipNumber + " ship left" );
         int x ;
         int y ;
-        do {
+        //do {
             Scanner input = new Scanner(System.in);
             System.out.print("Set X coordinat for strik: ");
             x = input.nextInt();
@@ -60,7 +62,7 @@ public class Battle {
                     opponent.playerShipNumber--;}
 
                 else if (opponent.getBoard().getGameBoard()[y][x].equals(Cell.EMPTY)){
-                    System.out.println("\nOh no!! That's a miss" + player.name + ", Better luck next time Captain.");
+                    System.out.println("\nOh no!! That's a miss " + player.name + ", Better luck next time Captain.");
                     opponent.getBoard().getGameBoard()[y][x] = Cell.MISS;
                 }
                 else if (opponent.getBoard().getGameBoard()[x][y].equals(Cell.HIT_SHIP)) {
@@ -68,8 +70,9 @@ public class Battle {
                 }
             }
             else if ((x > 0 || x<= opponent.getBoard().numRows) || (y >= 0 || y < opponent.getBoard().numCols))
-                System.out.println("\nPlease " + player.name + ", try to focus. We cant shot outside the gamboard.");
-        }while ((x < 0 || x >= opponent.getBoard().numRows)||(y < 0 || y >= opponent.getBoard().numCols));
+                System.out.println("\nPlease " + player.name + ", try to focus. You can't shot outside the gamboard.");
+        //}while ((x < 0 || x >= opponent.getBoard().numRows)||(y < 0 || y >= opponent.getBoard().numCols));
+
     }
     public void gameOver(){
         System.out.println( " "+ player1.name + " Has: " + player1.playerShipNumber + "ship | " + player2.name + " Has: " + player2.playerShipNumber + " ship");
