@@ -3,5 +3,4 @@ public enum Cell {
     MISS,
     SHIP,
     HIT_SHIP,
-    OWN_SHIP,
 }

@@ -16,7 +16,7 @@ public class GameBoard {
             }
         }
     }
-    
+
     public void printGameBoard(boolean hideShips) {
         System.out.println();
         //Y-coordinats  over gameboard

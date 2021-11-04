@@ -14,15 +14,6 @@ public class Battle {
         placeShip(player2);
     }
 
-    public void GameLoop() {
-        while(player1.playerShipNumber != 0 && player2.playerShipNumber!= 0) {
-            player2.getBoard().printGameBoard(true);
-            playerTurn(player1, player2);
-            player1.getBoard().printGameBoard(true);
-            playerTurn(player2, player1);
-        }
-    }
-
     protected void placeShip(Player player){
         player.getBoard().printGameBoard(false);
         Scanner input = new Scanner(System.in);
@@ -69,6 +60,15 @@ public class Battle {
             }
             else if ((x > 0 || x<= opponent.getBoard().numRows) || (y >= 0 || y < opponent.getBoard().numCols))
                 System.out.println("\nPlease " + player.name + ", try to focus. You can't shot outside the gamboard.");
+    }
+
+    public void GameLoop() {
+        while(player1.playerShipNumber != 0 && player2.playerShipNumber!= 0) {
+            player2.getBoard().printGameBoard(true);
+            playerTurn(player1, player2);
+            player1.getBoard().printGameBoard(true);
+            playerTurn(player2, player1);
+        }
     }
 
     public void gameOver(){
